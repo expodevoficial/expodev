@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expo Dev 2026</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+
+  
+</head>
+
+<body>
+
+<section class="hero show">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <button class="btnDetalles" onclick="scrollToSection('saludo')">
+      Ver detalles
+    </button>
+  </div>
+</section>
+
+<section id="saludo">
+    <div class="gif-container">
+      <img src="SaludoMoradito.gif">
+    </div>
+</section>
+
+<!-- SOBRE -->
+<section>
+  <h2 class="section-title">Sobre el evento</h2>
+  <p class="subtext">
+    Expo Dev es un espacio donde podrás conocer a futuros desarrolladores y explorar sus portafolios.
+  </p>
+  <br>
+  <p class="subtext">
+    Te mostraremos proyectos reales en los que hemos aplicado lo aprendido durante nuestra carrera. Podrás interactuar con nosotros, hacer preguntas y ver de cerca nuestras habilidades.
+  </p>
+</section>
+
+<!-- FEATURES -->
+<section>
+  <h2 class="section-title">¿Qué encontrarás?</h2>
+  <div class="features">
+    <a href="muestra.html#videojuegos"><div class="feature">🎮 Videojuegos</div></a>
+    <a href="muestra.html#web"><div class="feature">💻 Desarrollo web</div></a>
+    <a href="muestra.html#3d"><div class="feature">🎨 Diseño 3D</div></a>
+    <a href="muestra.html#audiovisual"><div class="feature">🎬 Producción audiovisual</div></a>
+  </div>
+  <a href="muestra.html">
+    <button class="btn">Ver portafolio</button>
+  </a>
+</section>
+
+<!-- INVITACIÓN -->
+<section>
+  <div class="card">
+    <p style="font-size: 1.2rem; letter-spacing: 0.8px;">
+      Nos encantaría contar con tu presencia para que conozcas nuestro trabajo, nos compartas tu opinión y, si lo deseas, identifiques talento que podría <strong>integrarse a tu equipo.</strong>
+    </p>
+  </div>
+</section>
+
+<!-- EVENTO -->
+<section id="evento">
+  <h2 class="section-title">Fecha y hora</h2>
+  <div class="card">
+    <p style="font-size: 30px;"><strong>Sábado 30 de mayo</strong></p>
+    <p style="font-size: 25px;">14:00 - 20:00</p>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</section>
+
+<!-- UBICACIÓN -->
+<section>
+  <h2 class="section-title">Ubicación</h2>
+  <p><strong>Gimnasio de la Universidad Palmore</strong></p>
+  <p>Calle Ignacio Allende 8, Zona Centro</p>
+  <br>
+  <div class="map-container">
+  <iframe 
+    src="https://www.google.com/maps?q=Universidad+Palmore+Chihuahua&output=embed"
+    width="100%" 
+    height="300" 
+    style="border:0;" 
+    allowfullscreen="" 
+    loading="lazy">
+  </iframe>
+</div>
+</section>
+
+<section class="footer">
+  <div class="footer-content">
+    <a href="#">
+      <img src="logo.png" alt="Personal Logo" class="logo">
+    </a>
+    <a href="https://www.instagram.com/palmoresuperior?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+      <img src="logoEscuela.png" alt="Institution Logo" class="logoEscuela">
+    </a>
+    <div class="social-links">
+      <a href="https://www.facebook.com/profile.php?id=61579477126436" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/expo._.dev/?utm_source=ig_web_button_share_sheet" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@expo.dev?is_from_webapp=1&sender_device=pc" target="_blank"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.reddit.com/user/Expo_Dev/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button" target="_blank"><i class="fab fa-reddit"></i></a>
+    </div>
+  </div>
+</section>
+
+<script>
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+// COUNTDOWN
+const countdown = document.getElementById('countdown');
+const eventDate = new Date('May 30, 2026 14:00:00').getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}, 1000);
+
+// SCROLL
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+});
+sections.forEach(sec => observer.observe(sec));
+</script>
+
+</body>
+</html>
